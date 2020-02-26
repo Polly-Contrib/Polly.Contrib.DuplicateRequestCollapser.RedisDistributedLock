@@ -140,23 +140,24 @@ Task("__UpdateAssemblyVersionInformation")
 
     Information("");
     Information("Obtained raw version info for package versioning:");
-    Information("NuGetVersion -> {0}", gitVersionOutput["NuGetVersion"]);
-    Information("FullSemVer -> {0}", gitVersionOutput["FullSemVer"]);
-    Information("AssemblySemVer -> {0}", gitVersionOutput["AssemblySemVer"]);
+    Information("NuGetVersion                 -> {0}", gitVersionOutput["NuGetVersion"]);
+    Information("FullSemVer                   -> {0}", gitVersionOutput["FullSemVer"]);
+    Information("AssemblySemVer               -> {0}", gitVersionOutput["AssemblySemVer"]);
+    Information("Major                        -> {0}", gitVersionOutput["Major"]);
 
     appveyorBuildNumber = gitVersionOutput["BranchName"].ToString().Equals("master", StringComparison.OrdinalIgnoreCase)
         ? gitVersionOutput["FullSemVer"].ToString() 
-        : gitVersionOutput["InformationalVersion"].ToString();
+        : $"{gitVersionOutput["InformationalVersion"]}-{DateTime.UtcNow.ToString("yyyyMMddHHmmssffff")}";
     nugetVersion = gitVersionOutput["NuGetVersion"].ToString();
     assemblyVersion = gitVersionOutput["Major"].ToString() + ".0.0.0";
     assemblySemver = gitVersionOutput["AssemblySemVer"].ToString();
 
     Information("");
     Information("Mapping versioning information to:");
-    Information("Appveyor build number -> {0}", appveyorBuildNumber);
-    Information("Nuget package version -> {0}", nugetVersion);
-    Information("AssemblyVersion -> {0}", assemblyVersion);
-    Information("AssemblyFileVersion -> {0}", assemblySemver);
+    Information("Appveyor build number        -> {0}", appveyorBuildNumber);
+    Information("Nuget package version        -> {0}", nugetVersion);
+    Information("AssemblyVersion              -> {0}", assemblyVersion);
+    Information("AssemblyFileVersion          -> {0}", assemblySemver);
     Information("AssemblyInformationalVersion -> {0}", assemblySemver);
 });
 
