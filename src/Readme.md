@@ -1,6 +1,6 @@
 # Polly.Contrib.DuplicateRequestCollapser.RedisDistributedLock
 
-This project contains a lock interface that uses redis to do distributed locking.
+Polly.Contrib.DuplicateRequestCollapser.RedisDistributedLock is a Redis distributed lock for use with [Polly.Contrib.DuplicateRequestCollapser](https://github.com/Polly-Contrib/Polly.Contrib.DuplicateRequestCollapser)
 
 ## Why use a distributed lock?
 A distributed lock is great for the really big, expensive calculations or queries, etc. Something that can be measured in seconds time to get back is a great candidate for a distributed lock.
